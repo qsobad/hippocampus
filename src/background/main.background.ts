@@ -88,8 +88,10 @@ import BrowserPlatformUtilsService from '../services/browserPlatformUtils.servic
 import BrowserStorageService from '../services/browserStorage.service';
 import I18nService from '../services/i18n.service';
 import VaultTimeoutService from '../services/vaultTimeout.service';
+import IpfsService from '../services/ipfs.service';
 
 export default class MainBackground {
+    ipfsService: IpfsService;
     messagingService: MessagingServiceAbstraction;
     storageService: StorageServiceAbstraction;
     secureStorageService: StorageServiceAbstraction;
@@ -149,6 +151,7 @@ export default class MainBackground {
 
     constructor() {
         // Services
+        this.ipfsService = new IpfsService();
         this.messagingService = new BrowserMessagingService();
         this.platformUtilsService = new BrowserPlatformUtilsService(this.messagingService,
             (clipboardValue, clearMs) => {
