@@ -6,6 +6,7 @@ import {
     AppIdService,
     AuditService,
     AuthService,
+    IpfsService,
     CipherService,
     CollectionService,
     ConstantsService,
@@ -36,6 +37,7 @@ import {
     AppIdService as AppIdServiceAbstraction,
     AuditService as AuditServiceAbstraction,
     AuthService as AuthServiceAbstraction,
+    IpfsService as IpfsServiceAbstraction,
     CipherService as CipherServiceAbstraction,
     CollectionService as CollectionServiceAbstraction,
     CryptoService as CryptoServiceAbstraction,
@@ -88,10 +90,8 @@ import BrowserPlatformUtilsService from '../services/browserPlatformUtils.servic
 import BrowserStorageService from '../services/browserStorage.service';
 import I18nService from '../services/i18n.service';
 import VaultTimeoutService from '../services/vaultTimeout.service';
-import IpfsService from '../services/ipfs.service';
 
 export default class MainBackground {
-    ipfsService: IpfsService;
     messagingService: MessagingServiceAbstraction;
     storageService: StorageServiceAbstraction;
     secureStorageService: StorageServiceAbstraction;
@@ -118,6 +118,7 @@ export default class MainBackground {
     containerService: ContainerService;
     auditService: AuditServiceAbstraction;
     authService: AuthServiceAbstraction;
+    ipfsService: IpfsServiceAbstraction;
     exportService: ExportServiceAbstraction;
     searchService: SearchServiceAbstraction;
     notificationsService: NotificationsServiceAbstraction;
@@ -151,7 +152,6 @@ export default class MainBackground {
 
     constructor() {
         // Services
-        this.ipfsService = new IpfsService();
         this.messagingService = new BrowserMessagingService();
         this.platformUtilsService = new BrowserPlatformUtilsService(this.messagingService,
             (clipboardValue, clearMs) => {
@@ -273,12 +273,14 @@ export default class MainBackground {
                     that.runtimeBackground.processMessage(message, that, null);
                 }
             }(), this.vaultTimeoutService, this.logService);
+        this.ipfsService = new IpfsService();
     }
 
     async bootstrap() {
         this.containerService.attachToWindow(window);
 
         (this.authService as AuthService).init();
+        (this.ipfsService as IpfsService).init();
         await (this.vaultTimeoutService as VaultTimeoutService).init(true);
         await (this.i18nService as I18nService).init();
         await (this.eventService as EventService).init(true);
