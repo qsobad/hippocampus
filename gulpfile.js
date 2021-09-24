@@ -205,11 +205,7 @@ function stdOutProc(proc) {
 }
 
 function webfonts() {
-    return gulp.src('./webfonts.list')
-        .pipe(googleWebFonts({
-            fontsDir: 'webfonts',
-            cssFilename: 'webfonts.css'
-        }))
+    return gulp.src('./store/css')
         .pipe(gulp.dest(paths.cssDir));
 }
 
