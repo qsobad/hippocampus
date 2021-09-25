@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "qWard",
-  "short_name": "qWard",
+  "name": "qVault",
+  "short_name": "qVault",
   "version": "1.52.1",
-  "description": "qWard - Secure personal password manager",
+  "description": "qVault - Secure distributed password manager",
   "default_locale": "en",
-  "author": "q",
-  "homepage_url": "http://q.so",
+  "author": "qvault",
+  "homepage_url": "http://qvault.so",
   "icons": {
     "16": "images/icon16.png",
     "32": "images/icon32.png",
