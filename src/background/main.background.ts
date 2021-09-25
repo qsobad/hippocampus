@@ -280,7 +280,7 @@ export default class MainBackground {
         this.containerService.attachToWindow(window);
 
         (this.authService as AuthService).init();
-        (this.ipfsService as IpfsService).init();
+        await (this.ipfsService as IpfsService).init();
         await (this.vaultTimeoutService as VaultTimeoutService).init(true);
         await (this.i18nService as I18nService).init();
         await (this.eventService as EventService).init(true);

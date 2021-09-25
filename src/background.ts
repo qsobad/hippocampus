@@ -1,11 +1,12 @@
 import MainBackground from './background/main.background';
-// import MetaMaskOnboarding from '@metamask/onboarding';
 
-const bitwardenMain = (window as any).bitwardenMain = new MainBackground();
-bitwardenMain.bootstrap().then(async () => {
+const qVaultMain = (window as any).qVaultMain = new MainBackground();
+qVaultMain.bootstrap().then(async () => {
     // Finished bootstrapping
-    console.log(bitwardenMain.ipfsService);
+    // console.log(qVaultMain.ipfsService);
 
+    console.log('Main bootstrapping.');
+    qVaultMain.ipfsService.test();
 
     // const createMetaMaskProvider = require('metamask-extension-provider');
     //
