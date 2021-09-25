@@ -5,6 +5,6 @@ qVaultMain.bootstrap().then(async () => {
     // Finished bootstrapping
     console.log('Main bootstrapping.');
 
-    //qVaultMain.ipfsService.test();
+    // await qVaultMain.ipfsService.test();
 
 });

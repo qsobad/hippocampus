@@ -152,6 +152,7 @@ export default class MainBackground {
 
     constructor() {
         // Services
+        this.ipfsService = new IpfsService();
         this.messagingService = new BrowserMessagingService();
         this.platformUtilsService = new BrowserPlatformUtilsService(this.messagingService,
             (clipboardValue, clearMs) => {
@@ -182,7 +183,7 @@ export default class MainBackground {
         this.tokenService = new TokenService(this.storageService);
         this.appIdService = new AppIdService(this.storageService);
         this.environmentService = new EnvironmentService(this.storageService);
-        this.apiService = new ApiService(this.tokenService, this.platformUtilsService, this.environmentService,
+        this.apiService = new ApiService(this.tokenService, this.platformUtilsService, this.environmentService, this.ipfsService,
             (expired: boolean) => this.logout(expired));
         this.userService = new UserService(this.tokenService, this.storageService);
         this.settingsService = new SettingsService(this.userService, this.storageService);
@@ -214,7 +215,7 @@ export default class MainBackground {
             }, async () => await this.logout(false));
         this.syncService = new SyncService(this.userService, this.apiService, this.settingsService,
             this.folderService, this.cipherService, this.cryptoService, this.collectionService,
-            this.storageService, this.messagingService, this.policyService, this.sendService,
+            this.storageService, this.messagingService, this.policyService, this.sendService, this.ipfsService,
             async (expired: boolean) => await this.logout(expired));
         this.eventService = new EventService(this.storageService, this.apiService, this.userService,
             this.cipherService);
@@ -264,7 +265,6 @@ export default class MainBackground {
         this.windowsBackground = new WindowsBackground(this);
 
         const that = this;
-        this.ipfsService = new IpfsService();
         this.authService = new AuthService(this.cryptoService, this.apiService, this.userService,
             this.tokenService, this.appIdService, this.i18nService, this.platformUtilsService,
             new class extends MessagingServiceAbstraction {
