@@ -281,8 +281,6 @@ export default class MainBackground {
 
         (this.authService as AuthService).init();
         (this.ipfsService as IpfsService).init();
-        const cid = await (this.ipfsService as IpfsService).upload();
-        console.log(cid);
         await (this.vaultTimeoutService as VaultTimeoutService).init(true);
         await (this.i18nService as I18nService).init();
         await (this.eventService as EventService).init(true);
