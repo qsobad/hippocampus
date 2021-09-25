@@ -1,38 +1,23 @@
 import MainBackground from './background/main.background';
-import Eth from 'ethjs';
+// import MetaMaskOnboarding from '@metamask/onboarding';
 
 const bitwardenMain = (window as any).bitwardenMain = new MainBackground();
-bitwardenMain.bootstrap().then(() => {
+bitwardenMain.bootstrap().then(async () => {
     // Finished bootstrapping
     console.log(bitwardenMain.ipfsService);
 
-    const createMetaMaskProvider = require('metamask-extension-provider');
-    console.log(createMetaMaskProvider);
 
-    const provider = createMetaMaskProvider();
+    // const createMetaMaskProvider = require('metamask-extension-provider');
+    //
+    // const provider = createMetaMaskProvider();
+    //
+    // if (provider) {
+    //     console.log(provider.isMetaMask);
+    //     const accounts = await provider.request({method: 'eth_requestAccounts'});
+    //     const account = accounts[0];
+    //     console.log(provider.isConnected());
+    //     console.log(account);
+    // }
 
-    if (provider) {
-        console.log('provider detected', provider);
-        const eth = new Eth(provider);
-        eth.accounts()
-            .then((accounts) => {
-                console.log(`Detected MetaMask account ${accounts[0]}`);
-            });
-
-        provider.on('error', (error) => {
-            if (error && error.includes('lost connection')) {
-                console.log('MetaMask extension not detected.');
-            }
-        });
-
-    } else {
-        console.log('MetaMask provider not detected.')
-    }
-
-    provider.on('error', (error: any) => {
-        console.log(error);
-    });
-
-    console.log(provider.isMetaMask);
 
 });
