@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { IpfsService } from 'jslib-common/abstractions/ipfs.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';

@@ -264,6 +264,7 @@ export default class MainBackground {
         this.windowsBackground = new WindowsBackground(this);
 
         const that = this;
+        this.ipfsService = new IpfsService();
         this.authService = new AuthService(this.cryptoService, this.apiService, this.userService,
             this.tokenService, this.appIdService, this.i18nService, this.platformUtilsService,
             new class extends MessagingServiceAbstraction {
@@ -272,15 +273,14 @@ export default class MainBackground {
                     const message = Object.assign({}, { command: subscriber }, arg);
                     that.runtimeBackground.processMessage(message, that, null);
                 }
-            }(), this.vaultTimeoutService, this.logService);
-        this.ipfsService = new IpfsService();
+            }(), this.vaultTimeoutService, this.logService, this.ipfsService);
     }
 
     async bootstrap() {
         this.containerService.attachToWindow(window);
 
-        (this.authService as AuthService).init();
         await (this.ipfsService as IpfsService).init();
+        (this.authService as AuthService).init();
         await (this.vaultTimeoutService as VaultTimeoutService).init(true);
         await (this.i18nService as I18nService).init();
         await (this.eventService as EventService).init(true);
@@ -349,6 +349,7 @@ export default class MainBackground {
     }
 
     async logout(expired: boolean) {
+        this.ipfsService.logout();
         await this.eventService.uploadEvents();
         const userId = await this.userService.getUserId();
 

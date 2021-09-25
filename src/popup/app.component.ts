@@ -25,6 +25,7 @@ import {
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
 import { AuthService } from 'jslib-common/abstractions/auth.service';
+import { IpfsService } from 'jslib-common/abstractions/ipfs.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';

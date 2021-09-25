@@ -23,6 +23,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AppIdService } from 'jslib-common/abstractions/appId.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
+import { IpfsService as IpfsServiceAbstraction } from 'jslib-common/abstractions/ipfs.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -55,6 +56,7 @@ import { AutofillService } from '../../services/abstractions/autofill.service';
 import BrowserMessagingService from '../../services/browserMessaging.service';
 
 import { AuthService } from 'jslib-common/services/auth.service';
+import { IpfsService } from 'jslib-common/services/ipfs.service';
 import { ConsoleLogService } from 'jslib-common/services/consoleLog.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 import { SearchService } from 'jslib-common/services/search.service';
@@ -66,7 +68,7 @@ import { PopupUtilsService } from './popup-utils.service';
 function getBgService<T>(service: string) {
     return (): T => {
         const page = BrowserApi.getBackgroundPage();
-        return page ? page.bitwardenMain[service] as T : null;
+        return page ? page.qVaultMain[service] as T : null;
     };
 }
 
@@ -128,6 +130,7 @@ export function initFactory(platformUtilsService: PlatformUtilsService, i18nServ
         ModalService,
         { provide: MessagingService, useValue: messagingService },
         { provide: AuthServiceAbstraction, useFactory: getBgService<AuthService>('authService'), deps: [] },
+        { provide: IpfsServiceAbstraction, useFactory: getBgService<IpfsService>('ipfsService'), deps: [] },
         { provide: StateServiceAbstraction, useValue: stateService },
         { provide: SearchServiceAbstraction, useValue: searchService },
         { provide: AuditService, useFactory: getBgService<AuditService>('auditService'), deps: [] },
