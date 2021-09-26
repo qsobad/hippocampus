@@ -185,7 +185,7 @@ export default class MainBackground {
         this.environmentService = new EnvironmentService(this.storageService);
         this.apiService = new ApiService(this.tokenService, this.platformUtilsService, this.environmentService, this.ipfsService,
             (expired: boolean) => this.logout(expired));
-        this.userService = new UserService(this.tokenService, this.storageService);
+        this.userService = new UserService(this.tokenService, this.storageService, this.ipfsService);
         this.settingsService = new SettingsService(this.userService, this.storageService);
         this.fileUploadService = new FileUploadService(this.logService, this.apiService);
         this.cipherService = new CipherService(this.cryptoService, this.userService, this.settingsService,

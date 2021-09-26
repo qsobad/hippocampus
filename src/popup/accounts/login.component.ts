@@ -28,9 +28,9 @@ export class LoginComponent extends BaseLoginComponent {
         super(authService, router, platformUtilsService, i18nService, stateService, environmentService, passwordGenerationService, cryptoFunctionService, storageService);
         super.onSuccessfulLogin = async () => {
             await syncService.fullSync(true).then(async () => {
-                if (await this.userService.getForcePasswordReset()) {
-                    this.router.navigate(['update-temp-password']);
-                }
+                // if (await this.userService.getForcePasswordReset()) {
+                //     this.router.navigate(['update-temp-password']);
+                // }
             });
         };
         super.successRoute = '/tabs/vault';
