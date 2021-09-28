@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var i18n = {};
     var lang = window.navigator.language;
     
-    i18n.appName = chrome.i18n.getMessage('appName');
+    // i18n.appName = chrome.i18n.getMessage('appName');
+    i18n.appName = 'qVault';
     i18n.close = chrome.i18n.getMessage('close');
     i18n.yes = chrome.i18n.getMessage('yes');
     i18n.never = chrome.i18n.getMessage('never');

@@ -9,3 +9,4 @@ qVault help you manager your password without involving any centralized third pa
 - Store more personal information, like bookmarks, notes, etc
 - Retrieve vaultCid from blockchain with authentication
 - Use aes encryption in ciphers
+- Provide local cache of vault, instead of waiting IPFS

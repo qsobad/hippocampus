@@ -414,7 +414,7 @@ export default class RuntimeBackground {
         setTimeout(async () => {
             if (this.onInstalledReason != null) {
                 if (this.onInstalledReason === 'install') {
-                    BrowserApi.createNewTab('https://bitwarden.com/browser-start/');
+                    // BrowserApi.createNewTab('https://bitwarden.com/browser-start/');
                     await this.setDefaultSettings();
                 }
 
