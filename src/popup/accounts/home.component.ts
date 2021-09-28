@@ -19,7 +19,8 @@ import { Utils } from 'jslib-common/misc/utils';
 export class HomeComponent {
     constructor(protected platformUtilsService: PlatformUtilsService,
         private passwordGenerationService: PasswordGenerationService, private storageService: StorageService,
-        private cryptoFunctionService: CryptoFunctionService, private environmentService: EnvironmentService) { }
+        private cryptoFunctionService: CryptoFunctionService, private environmentService: EnvironmentService,
+        private ipfsService: IpfsService) { }
 
     async launchSsoBrowser() {
         // Generate necessary sso params
@@ -51,5 +52,11 @@ export class HomeComponent {
         this.platformUtilsService.launchUri(url + '/#/sso?clientId=browser' +
             '&redirectUri=' + encodeURIComponent(redirectUri) +
             '&state=' + state + '&codeChallenge=' + codeChallenge);
+    }
+
+    async clearCache() {
+        if (window.confirm('This will clear stored password vault!!!')) {
+            this.ipfsService.clearVaultCid();
+        }
     }
 }

@@ -152,7 +152,6 @@ export default class MainBackground {
 
     constructor() {
         // Services
-        this.ipfsService = new IpfsService();
         this.messagingService = new BrowserMessagingService();
         this.platformUtilsService = new BrowserPlatformUtilsService(this.messagingService,
             (clipboardValue, clearMs) => {
@@ -174,6 +173,7 @@ export default class MainBackground {
                 }
             });
         this.storageService = new BrowserStorageService();
+        this.ipfsService = new IpfsService(this.storageService);
         this.secureStorageService = new BrowserStorageService();
         this.i18nService = new I18nService(BrowserApi.getUILanguage(window));
         this.cryptoFunctionService = new WebCryptoFunctionService(window, this.platformUtilsService);
