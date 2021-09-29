@@ -24,3 +24,18 @@ This DApp demo how to store personal data securely and permanently with the help
 - Use aes encryption in ciphers
 - Provide local cache of vault, to avoid network issues
 - Support more wallets
+
+### Requirements
+
+- Node.js v16 or greater
+- NPM v7
+- Gulp (npm install --global gulp-cli)
+- Chrome
+
+### Run the app
+
+0. Build: `npm install; npm run build`
+1. You can now load the extension into your chrome through the browser's extension tools page.
+2. Type chrome://extensions in your address bar to bring up the extensions page.
+3. Enable developer mode (toggle switch)
+4. Click the "Load unpacked extension" button, navigate to the build folder of your local extension instance, and click "Ok".
