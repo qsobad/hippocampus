@@ -25,6 +25,8 @@ This DApp demo how to store personal data securely and permanently with the help
 - Provide local cache of vault, to avoid network issues
 - Support more wallets
 
+## Buliding for development
+
 ### Requirements
 
 - Node.js v16 or greater
